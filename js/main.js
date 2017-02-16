@@ -32,13 +32,20 @@ $(document).ready(function () {
 
       // Toggle turn
       gs.red_turn = !gs.red_turn;
+      $('#red-score').toggleClass('turn');
+      $('#blue-score').toggleClass('turn');
 
     } else {
       // Fetch words
       get_words(gs.category, function () {
         // Start game
         gs.is_playing = true;
-        $('#main-button').text('Got it!');
+        $('#skip-button').removeAttr('disabled');
+        $('#main-button')
+          .text('Got it!')
+          .removeClass('btn-success')
+          .addClass('btn-primary');
+        $('#red-score').addClass('turn');
 
         // Start timer
         gs.timer.start();
@@ -65,7 +72,10 @@ var show_next_word = function () {
 
   // Grab random word from cache
   var idx = Math.floor(Math.random() * gs.words.length);
-  $('#phrase').text(gs.words.splice(idx, 1));
+  // console.log(gs.words[idx], gs.words[idx].replace(' ', '<br />'));
+  // var word = gs.words.splice(idx, 1).toString().replace(' ', '<br />');
+  var word = gs.words.splice(idx, 1);
+  $('#phrase p').html(word);
 }
 
 /**
@@ -82,13 +92,16 @@ var timer_update = function (remaining) {
  */
 var timer_finish = function () {
   gs.is_playing = false;
-  $('#timer').text('done');
 
   // Opposite team scores 2 points
   update_score(2);
 
   // Reset for next round
-  $('#main-button').text('Start');
+  $('#skip-button').attr('disabled', 'true');
+  $('#main-button')
+    .text('Start')
+    .removeClass('btn-success')
+    .addClass('btn-primary');
 }
 
 /**
