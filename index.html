@@ -4,13 +4,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/style.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <title>Guessing Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+  <title>Catchphrase</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/timer.js"></script>
   <script src="js/main.js"></script>
 </head>
 <body>
   <div class="card">
+    <div class="menu">
+      <h1>Catchphrase</h1>
+      <select id="category">
+        <option selected="true" disabled="disabled" value="invalid">Choose category...</option> 
+      </select>
+    </div>
     <header>
       <div class="team left">Blue</div>
       <div class="score left" id="blue-score">0</div>
@@ -21,7 +28,7 @@
     <div id="phrase"><p></p></div>
     <div class="bottom">
       <button id="main-button" class="btn btn-success btn-lg btn-block">Start</button>
-      <button id="skip-button" class="btn btn-warning btn-block" disabled="true">Skip</button>
+      <button id="skip-button" class="btn btn-warning btn-block">Skip</button>
     </div>
   </div>
 </body>

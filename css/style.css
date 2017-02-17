@@ -1,4 +1,7 @@
 
+* {
+  outline: none;
+}
 html {
   background-color: #fefccc;
 }
@@ -15,6 +18,41 @@ html {
   border-radius: 30px;
 }
 
+/**
+ * Menu view
+ */
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  background-color: rgba(238, 238, 238, 0.9);
+  border-radius: 25px;
+}
+.menu h1 {
+  font-size: 46px;
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align: center;
+  margin: 70px 0 60px 0;
+}
+.menu select {
+  color: #444;
+  font-size: 24px;
+  width: 240px;
+  margin: 0 0 0 25px;
+  padding: 5px 8px;
+  border: 1px solid #999;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+/**
+ * In-game view
+ */
 header {
   position: absolute;
   top: 0;
@@ -28,17 +66,23 @@ header #timer {
   left: 50%;
   margin-left: -40px;
   width: 80px;
+  color: #222;
   font-size: 40px;
   text-align: left;
 }
+header .remain {
+  z-index: 99;
+}
 header .team {
   position: absolute;
-  top: 3px;
+  top: 5px;
+  color: #555;
   font-size: 14px;
 }
 header .score {
   position: absolute;
-  top: 16px;
+  top: 18px;
+  color: #333;
   font-size: 26px;
 }
 header .left {
@@ -76,7 +120,9 @@ header .turn {
   right: 15px;
 }
 #main-button {
+  position: relative;
   font-size: 24px;
+  z-index: 99;
 }
 #skip-button {
   font-size: 14px;

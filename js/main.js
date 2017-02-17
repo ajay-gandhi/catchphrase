@@ -2,7 +2,7 @@
 // Game state
 var gs = {
   is_playing: false,
-  category:   'easy', // assume for now
+  category:   false, // assume for now
   words:      false,
   timer:      false,
   red_turn:   true,
@@ -22,7 +22,14 @@ var CATEGORIES = [
 ];
 
 $(document).ready(function () {
-  gs.timer = new Timer(10, timer_update, timer_finish);
+  // Setup category select
+  CATEGORIES.forEach(function (cat) {
+    $('select').append(
+      '<option value="' + cat + '">' + prettify_cat(cat) + '</option>'
+    );
+  });
+
+  gs.timer = new Timer(5, timer_update, timer_finish);
 
   $('#main-button').click(function () {
     if (gs.is_playing) {
@@ -36,27 +43,33 @@ $(document).ready(function () {
       $('#blue-score').toggleClass('turn');
 
     } else {
+      gs.category = $('select').val();
+      if (!gs.category) return;
+
       // Fetch words
       get_words(gs.category, function () {
-        // Start game
-        gs.is_playing = true;
-        $('#skip-button').removeAttr('disabled');
-        $('#main-button')
-          .text('Got it!')
-          .removeClass('btn-success')
-          .addClass('btn-primary');
-        $('#red-score').addClass('turn');
+        $('.menu').fadeOut(function () {
+          // Start game
+          gs.is_playing = true;
+          $('#skip-button').removeAttr('disabled');
+          $('#main-button')
+            .text('Got it!')
+            .removeClass('btn-success')
+            .addClass('btn-primary');
+          $('#red-score').addClass('turn');
 
-        // Start timer
-        gs.timer.start();
+          // Start timer
+          gs.timer.start();
 
-        // Display first word
-        show_next_word();
+          // Display first word
+          show_next_word();
+        });
       });
     }
   });
 
   $('#skip-button').click(function () {
+    if (!gs.is_playing) return;
     show_next_word();
     // add one to opponent score
     update_score(1);
@@ -66,8 +79,8 @@ $(document).ready(function () {
 /******************************* View functions *******************************/
 
 var show_next_word = function () {
-  if (!gs.is_playing || !gs.words || !gs.words.length) {
-    return console.error('Error: Invalid status.');
+  if (!gs.words || !gs.words.length) {
+    return console.error('Error: No words.');
   }
 
   // Grab random word from cache
@@ -97,11 +110,15 @@ var timer_finish = function () {
   update_score(2);
 
   // Reset for next round
-  $('#skip-button').attr('disabled', 'true');
-  $('#main-button')
-    .text('Start')
-    .removeClass('btn-success')
-    .addClass('btn-primary');
+  $('#phrase').text('');
+  setTimeout(function () {
+    $('header .team, header .score').addClass('remain');
+    $('.menu').fadeIn();
+    $('#main-button')
+      .text('Start')
+      .removeClass('btn-primary')
+      .addClass('btn-success');
+  }, 1000);
 }
 
 /**
