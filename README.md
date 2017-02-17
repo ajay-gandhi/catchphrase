@@ -5,4 +5,4 @@ Catchphrase board game in JS.
 ## Todos
 
 * Implement rules view
-* Implement custom timer
+* Fix custom timer view in-game

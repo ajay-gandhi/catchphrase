@@ -35,19 +35,28 @@ html {
   font-size: 46px;
   font-family: 'Gloria Hallelujah', cursive;
   text-align: center;
-  margin: 70px 0 60px 0;
+  margin: 70px 0 50px 0;
 }
 .menu select {
   color: #444;
-  font-size: 24px;
+  font-size: 20px;
   width: 240px;
-  margin: 0 0 0 25px;
+  margin: 0 0 15px 25px;
   padding: 5px 8px;
   border: 1px solid #999;
   box-shadow: none;
   background: transparent;
   background-image: none;
   -webkit-appearance: none;
+}
+.menu .timer-input-wrapper {
+  margin-left: 80px;
+}
+.menu #timer-input {
+  width: 70px;
+  font-size: 16px;
+  background: none;
+  border: 1px solid #999;
 }
 
 /**

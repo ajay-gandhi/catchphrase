@@ -10,12 +10,12 @@ var gs = {
 };
 
 var CATEGORIES = [
-  'animals',
   'easy',
-  'food_cooking',
-  'hard',
-  'household_items',
   'medium',
+  'hard',
+  'animals',
+  'food_cooking',
+  'household_items',
   'people',
   'travel',
   'all'
@@ -29,8 +29,6 @@ $(document).ready(function () {
     );
   });
 
-  gs.timer = new Timer(5, timer_update, timer_finish);
-
   $('#main-button').click(function () {
     if (gs.is_playing) {
       // Got word
@@ -43,8 +41,14 @@ $(document).ready(function () {
       $('#blue-score').toggleClass('turn');
 
     } else {
+      // Category
       gs.category = $('select').val();
       if (!gs.category) return;
+
+      // Custom timer
+      var duration = parseInt($('#timer-input').val());
+      if (isNaN(duration) || duration > 120 || duration < 10) duration = 30;
+      gs.timer = new Timer(duration, timer_update, timer_finish);
 
       // Fetch words
       get_words(gs.category, function () {

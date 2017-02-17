@@ -14,9 +14,14 @@
   <div class="card">
     <div class="menu">
       <h1>Catchphrase</h1>
-      <select id="category">
+      <select id="category-input">
         <option selected="true" disabled="disabled" value="invalid">Choose category...</option> 
       </select>
+      <div class="input-group timer-input-wrapper">
+        <span class="input-group-addon" id="basic-addon1">Timer</span>
+        <!-- <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"> -->
+        <input type="number" class="form-control" id="timer-input" max="120" min="10" value="30" />
+      </div>
     </div>
     <header>
       <div class="team left">Blue</div>
