@@ -47,7 +47,7 @@ $(document).ready(function () {
 
       // Custom timer
       var duration = parseInt($('#timer-input').val());
-      if (isNaN(duration) || duration > 120 || duration < 10) duration = 30;
+      if (isNaN(duration) || duration > 180 || duration < 10) duration = 30;
       gs.timer = new Timer(duration, timer_update, timer_finish);
 
       // Fetch words
@@ -89,8 +89,6 @@ var show_next_word = function () {
 
   // Grab random word from cache
   var idx = Math.floor(Math.random() * gs.words.length);
-  // console.log(gs.words[idx], gs.words[idx].replace(' ', '<br />'));
-  // var word = gs.words.splice(idx, 1).toString().replace(' ', '<br />');
   var word = gs.words.splice(idx, 1);
   $('#phrase p').html(word);
 }
@@ -99,9 +97,21 @@ var show_next_word = function () {
  * Passed to the timer. Receives the number of seconds remaining as a param
  */
 var timer_update = function (remaining) {
-  if (remaining < 10) remaining = '0' + remaining;
-  var rem_str = '0:' + remaining;
-  $('#timer').text(rem_str);
+  var mins = 0;
+
+  // Convert seconds to minutes
+  if (remaining > 59) {
+    while (remaining > 59) {
+      remaining -= 60;
+      mins++;
+    }
+    rem_str = mins + ':' + remaining;
+  }
+  // Format string
+  if (remaining < 10) {
+    remaining = '0' + remaining;
+  }
+  $('#timer').text(mins + ':' + remaining);
 }
 
 /**
