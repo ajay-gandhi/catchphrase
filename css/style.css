@@ -28,7 +28,7 @@ html {
   right: 0;
   bottom: 0;
   z-index: 80;
-  background-color: rgba(238, 238, 238, 0.9);
+  background-color: rgba(248, 248, 248, 0.9);
   border-radius: 25px;
 }
 .menu h1 {
@@ -128,11 +128,13 @@ header .turn {
   left: 15px;
   right: 15px;
 }
-#main-button {
+#big-button {
   position: relative;
   font-size: 24px;
   z-index: 99;
 }
-#skip-button {
+#sml-button {
+  position: relative;
   font-size: 14px;
+  z-index: 99;
 }

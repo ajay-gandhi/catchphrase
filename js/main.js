@@ -29,7 +29,7 @@ $(document).ready(function () {
     );
   });
 
-  $('#main-button').click(function () {
+  $('#big-button').click(function () {
     if (gs.is_playing) {
       // Got word
       // Display next word
@@ -55,11 +55,8 @@ $(document).ready(function () {
         $('.menu').fadeOut(function () {
           // Start game
           gs.is_playing = true;
-          $('#skip-button').removeAttr('disabled');
-          $('#main-button')
-            .text('Got it!')
-            .removeClass('btn-success')
-            .addClass('btn-primary');
+          $('#big-button').text('Got it!');
+          $('#sml-button').text('Skip');
           $('#red-score').addClass('turn');
 
           // Start timer
@@ -72,7 +69,7 @@ $(document).ready(function () {
     }
   });
 
-  $('#skip-button').click(function () {
+  $('#sml-button').click(function () {
     if (!gs.is_playing) return;
     show_next_word();
     // add one to opponent score
@@ -124,15 +121,13 @@ var timer_finish = function () {
   update_score(2);
 
   // Reset for next round
-  $('#phrase').text('');
   setTimeout(function () {
+    $('#phrase p').text('');
     $('header .team, header .score').addClass('remain');
     $('.menu').fadeIn();
-    $('#main-button')
-      .text('Start')
-      .removeClass('btn-primary')
-      .addClass('btn-success');
-  }, 1000);
+    $('#big-button').text('Start');
+    $('#sml-button').text('Rules');
+  }, 500);
 }
 
 /**
