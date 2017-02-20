@@ -50,10 +50,9 @@ html {
   -webkit-appearance: none;
 }
 .menu .timer-input-wrapper {
-  margin-left: 80px;
+  margin-left: 40px;
 }
 .menu #timer-input {
-  width: 70px;
   font-size: 16px;
   background: none;
   border: 1px solid #999;
