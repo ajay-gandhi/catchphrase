@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     } else {
       // Go to rules
-      window.location = 'http://github.com/ajay-gandhi/catchphrase';
+      window.location = 'http://github.com/ajay-gandhi/catchphrase#rules';
     }
   });
 });
