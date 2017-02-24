@@ -6,6 +6,7 @@ var gs = {
   words:      false,
   timer:      false,
   red_turn:   true,
+  game_over:  false,
   score:      [0, 0] // 0 is red, 1 is blue
 };
 
@@ -39,6 +40,19 @@ $(document).ready(function () {
       gs.red_turn = !gs.red_turn;
       $('#red-score').toggleClass('turn');
       $('#blue-score').toggleClass('turn');
+
+    } else if (gs.game_over) {
+      // Reset scores, menu
+      gs.score = [0, 0];
+      gs.red_turn = true;
+      gs.game_over = false;
+      update_score(0);
+
+      $('#phrase p').removeAttr('style').text('');
+      $('header .team, header .score').removeClass('remain');
+      $('.menu').fadeIn();
+      $('#big-button').text('Start');
+      $('#sml-button').text('Rules');
 
     } else {
       // Category
@@ -77,7 +91,7 @@ $(document).ready(function () {
 
     } else {
       // Go to rules
-      window.location = 'http://github.com/ajay-gandhi/catchphrase#rules';
+      window.location = 'https://github.com/ajay-gandhi/catchphrase/blob/master/README.md#rules';
     }
   });
 });
@@ -125,14 +139,45 @@ var timer_finish = function () {
   // Opposite team scores 2 points
   update_score(2);
 
-  // Reset for next round
-  setTimeout(function () {
-    $('#phrase p').text('');
-    $('header .team, header .score').addClass('remain');
-    $('.menu').fadeIn();
-    $('#big-button').text('Start');
-    $('#sml-button').text('Rules');
-  }, 500);
+  if (gs.score[0] >= 7 || gs.score[1] >= 7) {
+    gs.game_over = true;
+
+    // Game over
+    var winner_color, winner_text;
+    if (gs.score[0] >= 7 && gs.score[1] >= 7) {
+      winner_color = '#000';
+      winner_text  = 'It\'s a tie!';
+    } else if (gs.score[0] >= 7) {
+      winner_color = '#d9534f';
+      winner_text  = 'Red team wins!';
+    } else {
+      winner_color = '#337ab7'
+      winner_text  = 'Blue team wins!';      
+    }
+
+    $('#sml-button').attr('disabled', 'true');
+    setTimeout(function () {
+      $('#phrase p').fadeOut('fast', function () {
+        $(this).css({
+          color: winner_color,
+          fontWeight: 'bold'
+        }).text(winner_text).fadeIn();
+      });
+
+      // Set buttons for new game
+      $('#big-button').text('Play Again');
+    }, 500);
+
+  } else {
+    // Reset for next round
+    setTimeout(function () {
+      $('#phrase p').text('');
+      $('header .team, header .score').addClass('remain');
+      $('.menu').fadeIn();
+      $('#big-button').text('Start');
+      $('#sml-button').text('Rules');
+    }, 500);
+  }
 }
 
 /**

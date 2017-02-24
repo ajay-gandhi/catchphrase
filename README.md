@@ -23,5 +23,4 @@ time runs out. The first team to score 7 points wins.
 ## Todos
 
 * Implement other team guessing +bonus point (add to rules)
-* Implement game over at 7 points
 
