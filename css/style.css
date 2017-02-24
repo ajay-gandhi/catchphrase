@@ -6,6 +6,15 @@ html {
   background-color: #fefccc;
 }
 
+/**
+ * Larger on large screens
+ */
+@media (min-width: 525px) and (min-height: 700px) {
+  .card {
+    transform: scale(1.75);
+  }
+}
+
 .card {
   position: absolute;
   top: 50%;

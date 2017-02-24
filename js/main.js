@@ -22,7 +22,7 @@ var CATEGORIES = [
 ];
 
 $(document).ready(function () {
-  // Setup category select
+  // Setup category selection
   CATEGORIES.forEach(function (cat) {
     $('select').append(
       '<option value="' + cat + '">' + prettify_cat(cat) + '</option>'
@@ -70,10 +70,15 @@ $(document).ready(function () {
   });
 
   $('#sml-button').click(function () {
-    if (!gs.is_playing) return;
-    show_next_word();
-    // add one to opponent score
-    update_score(1);
+    if (gs.is_playing) {
+      show_next_word();
+      // add one to opponent score
+      update_score(1);
+
+    } else {
+      // Go to rules
+      window.location = 'http://github.com/ajay-gandhi/catchphrase';
+    }
   });
 });
 
