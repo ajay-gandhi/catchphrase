@@ -25,4 +25,5 @@ runs out. The first team to score 7 points wins.
 * Implement game ending at 7 points
 * Improve wordlists
 * Implement other team guessing +bonus point (add to rules)
+* On refresh / unload attempt confirm
 
