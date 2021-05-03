@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "redux-zero/react";
 import { actions } from "./store/store";
 
+import { Select } from "evergreen-ui";
+
 class CategorySelect extends React.PureComponent {
   static propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string),
@@ -22,12 +24,13 @@ class CategorySelect extends React.PureComponent {
 
     return (
       <div className="CategorySelect">
-        <select
+        <Select
           value={ this.props.selectedCategory }
           onChange={ this.selectCategory }
+          width="100%"
         >
           { categoryOptions }
-        </select>
+        </Select>
       </div>
     );
   }

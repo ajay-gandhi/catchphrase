@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "redux-zero/react";
 import { actions } from "./store/store";
 
+import { Button, Heading } from "evergreen-ui";
 import CategorySelect from "./CategorySelect";
 
 class Splash extends React.PureComponent {
@@ -13,14 +14,14 @@ class Splash extends React.PureComponent {
 
   render = () => (
     <div className="Splash">
-      <h1>Catchphrase</h1>
+      <Heading size={ 800 }>Catchphrase</Heading>
       <CategorySelect />
-      <button
+      <Button
         onClick={ this.props.startPlaying }
         disabled={ this.props.selectedCategory === "" }
       >
         Start
-      </button>
+      </Button>
     </div>
   );
 }
